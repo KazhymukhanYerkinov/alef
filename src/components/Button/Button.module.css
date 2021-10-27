@@ -1,0 +1,54 @@
+.button {
+  padding: 10px 20px;
+
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+
+
+  display: inline-flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  border: 0;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+.primary {
+  color: #FFFFFF;
+  background-color: #01A7FD;
+}
+.primary:hover {
+  background-color: #016ca1;
+}
+.outlined {
+  color: #01A7FD;
+  border: 2px solid #01A7FD;
+  background-color: transparent;
+}
+.outlined:hover {
+  color: #FFFFFF;
+  background-color: #01A7FD;
+}
+
+.plus {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.outlined:hover .plus svg {
+  fill: #FFFFFF;
+}
+.empty {
+  background: none;
+  color: #01A7FD;
+}
+.empty:hover {
+  text-decoration: underline;
+}

@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { withLayout } from './layout/Layout';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+
+import { FormPage } from './pages/form-page';
+import { ViewPage } from './pages/view-page';
+
+
+export type FormData = {
+  fullname: string;
+  age: string;
+  childs: Array<{ fullname: string, age: string }>
+}
 
 function App() {
+  const history = useHistory();
+  const [data, setData] = React.useState<FormData>({ fullname: '', age: '', childs: [] });
+
+  const handleData = (formData: FormData) => {
+    setData(formData);
+    history.push('/view');
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Switch>
+        <Route exact path = '/' render = {() => <FormPage handleData = {handleData} />} />
+        <Route exact path = '/view' render = {() => <ViewPage data = {data}/>} />
+        <Route path = '*' render = {() => <Redirect to = '/'/>}/>
+      </Switch>
+    </React.Fragment>
   );
 }
 
-export default App;
+export default withLayout(App);
